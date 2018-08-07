@@ -24,7 +24,9 @@ GTEST_DIR = ../../googletest
 GMOCK_DIR = ..
 
 # Where to find user code.
-USER_DIR = ../test
+# 自分のソースコードを置く場所
+USER_DIR = ../mysrc
+#USER_DIR = ../test
 
 # Flags passed to the preprocessor.
 # Set Google Test and Google Mock's header directories as system
@@ -94,8 +96,8 @@ gmock_main.a : gmock-all.o gtest-all.o gmock_main.o
 
 # Builds a sample test.
 
-gmock_test.o : $(USER_DIR)/gmock_test.cc $(GMOCK_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/gmock_test.cc
+mytest.o : $(USER_DIR)/mytest.cc $(GMOCK_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/mytest.cc
 
-gmock_test : gmock_test.o gmock_main.a
+gmock_test : mytest.o gmock_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
